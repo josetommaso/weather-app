@@ -9,7 +9,7 @@ function App() {
         title="Weather React App"
       />
 
-      <div class="contenedor-form">
+      <div className="contenedor-form">
         <div className="container">
           <div className="row">
             <div className="col m6 s12">

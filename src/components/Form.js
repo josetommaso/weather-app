@@ -1,13 +1,48 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Form = () => {
+
+    const [ search, setSearch ] = useState({
+        city: '',
+        country: ''
+    });
+
+    const { city, country } = search;
+
+    const handleChange = e => {
+        setSearch({
+            ...search,
+            [e.target.name] : e.target.value
+        });
+    }
+
+    const [ error, setError ] = useState(false);
+
+    const handleSubmit = e => {
+        e.preventDefault();
+
+        // validation
+        if(city.trim() === '' || country.trim() === '') {
+            setError(true);
+            return;
+        }
+
+        setError(false);
+
+    }
+
     return (
-        <form>
+        <form
+            onSubmit={handleSubmit}
+        >
+            { error ? <p className="red darken-4 error">All fields are required</p> : null }
             <div className="input-field col s12">
                 <input 
                     type="text"
                     name="city"
                     id="city"
+                    value={city}
+                    onChange={handleChange}
                 />
                 <label htmlFor="city">City:</label>
             </div>
@@ -16,6 +51,8 @@ const Form = () => {
                 <select
                     name="country"
                     id="country"
+                    value={country}
+                    onChange={handleChange}
                 > 
                     <option value="">-- Choose a country --</option>
                     <option value="US">United States</option>
@@ -25,8 +62,13 @@ const Form = () => {
                     <option value="CR">Costa Rica</option>
                     <option value="ES">Span</option>
                     <option value="PE">Peru</option>
+                    <option value="UK">United Kingdom</option>
+                    <option value="VE">Venezuela</option>
                 </select>
                 <label htmlFor="country">Country:</label>
+            </div>
+            <div className="input-field col s12">
+                <button type="submit" className="waves-effect waves-light btn-large btn-block yellow accent-4 center-block">Search</button>
             </div>
         </form>
      );
