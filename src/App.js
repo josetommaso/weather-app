@@ -24,7 +24,7 @@ function App() {
   useEffect(() => {
     const callAPI = async () => {
       if (call) {
-        const url = `http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${process.env.REACT_APP_OPEN_WEATHER_MAP_API_KEY}&units=metric`;
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${process.env.REACT_APP_OPEN_WEATHER_MAP_API_KEY}&units=metric`;
 
       const response = await fetch(url);
       const result = await response.json();
